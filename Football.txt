@@ -1,0 +1,225 @@
+1.SQL> show user;
+  USER is "SYSTEM"
+
+2.SQL> create table Football_venue
+  2  (
+  3  venue_id number(5),
+  4  venue_name varchar2(20),
+  5  city_id number(5),
+  6  capacity number(5));
+
+Table created.
+
+
+3.SQL> insert into Football_venue values
+  2  (
+  3  20001,
+  4  'France',
+  5  10003,
+  6  42115
+  7  );
+
+1 row created.
+
+
+
+SQL> insert into Football_venue values
+  2  (
+  3  20002,
+  4  'Old Trafford',
+  5  10002,
+  6  75000
+  7  );
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20003,
+  4  'Sanfrasisco',
+  5  10004,
+  6  60007);
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20004,
+  4  'Amsterdam',
+  5  10008,
+  6  38048);
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20005,
+  4  'Brazil',
+  5  10005,
+  6  78063);
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20006,
+  4  'Quatar',
+  5  10009,
+  6  45637);
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20007,
+  4  'Nigeria',
+  5  11001,
+  6  32009);
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20008,
+  4  'South Korea',
+  5  11002,
+  6  12345);
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20009,
+  4  'Russia',
+  5  12003,
+  6  19800);
+
+1 row created.
+
+SQL> insert into Football_venue values
+  2  (
+  3  20010,
+  4  'Norway',
+  5  12007,
+  6  56700);
+
+1 row created.
+
+SQL> select * from Football_venue;
+
+  VENUE_ID VENUE_NAME              CITY_ID   CAPACITY
+---------- -------------------- ---------- ----------
+     20001 France                    10003      42115
+     20002 Old Trafford              10002      75000
+     20003 Sanfrasisco               10004      60007
+     20004 Amsterdam                 10008      38048
+     20005 Brazil                    10005      78063
+     20006 Quatar                    10009      45637
+     20007 Nigeria                   11001      32009
+     20008 South Korea               11002      12345
+     20009 Russia                    12003      19800
+     20010 Norway                    12007      56700
+
+10 rows selected.
+
+4. SQL> select count(*) from Football_venue;
+
+  COUNT(*)
+----------
+        10
+
+
+
+
+5. SQL> alter table Football_venue
+   2  rename column venue_name to Location;
+
+Table altered.
+
+SQL> alter table Football_venue
+  2  rename column capacity to volume;
+
+Table altered.
+
+SQL> select * from Football_venue;
+
+  VENUE_ID LOCATION                CITY_ID     VOLUME
+---------- -------------------- ---------- ----------
+     20001 France                    10003      42115
+     20002 Old Trafford              10002      75000
+     20003 Sanfrasisco               10004      60007
+     20004 Amsterdam                 10008      38048
+     20005 Brazil                    10005      78063
+     20006 Quatar                    10009      45637
+     20007 Nigeria                   11001      32009
+     20008 South Korea               11002      12345
+     20009 Russia                    12003      19800
+     20010 Norway                    12007      56700
+
+10 rows selected.
+
+SQL> select Location,volume from Football_venue;
+
+LOCATION                 VOLUME
+-------------------- ----------
+France                    42115
+Old Trafford              75000
+Sanfrasisco               60007
+Amsterdam                 38048
+Brazil                    78063
+Quatar                    45637
+Nigeria                   32009
+South Korea               12345
+Russia                    19800
+Norway                    56700
+
+10 rows selected.
+
+
+
+6. SQL> alter table Football_venue
+   2  rename column Location to venue_name;
+
+Table altered.
+
+SQL> update Football_venue set venue_name='Australia' where venue_name='France';
+
+1 row updated.
+
+SQL> select * from Football_venue;
+
+  VENUE_ID VENUE_NAME              CITY_ID     VOLUME
+---------- -------------------- ---------- ----------
+     20001 Australia                 10003      42115
+     20002 Old Trafford              10002      75000
+     20003 Sanfrasisco               10004      60007
+     20004 Amsterdam                 10008      38048
+     20005 Brazil                    10005      78063
+     20006 Quatar                    10009      45637
+     20007 Nigeria                   11001      32009
+     20008 South Korea               11002      12345
+     20009 Russia                    12003      19800
+     20010 Norway                    12007      56700
+
+10 rows selected.
+
+SQL> delete from Football_venue
+  2  where venue_name='Australia';
+
+1 row deleted.
+
+SQL> select * from Football_venue;
+
+  VENUE_ID VENUE_NAME              CITY_ID     VOLUME
+---------- -------------------- ---------- ----------
+     20002 Old Trafford              10002      75000
+     20003 Sanfrasisco               10004      60007
+     20004 Amsterdam                 10008      38048
+     20005 Brazil                    10005      78063
+     20006 Quatar                    10009      45637
+     20007 Nigeria                   11001      32009
+     20008 South Korea               11002      12345
+     20009 Russia                    12003      19800
+     20010 Norway                    12007      56700
+
+9 rows selected.
